@@ -445,13 +445,14 @@ for ($idx = 0; $idx -lt $batches.Length; $idx++)
         {
             $userPrincipalName = $batchResponse.id
             $currentSetting = $batchResponse.body.contributionToContentDiscoveryDisabled
-            if ($null -ne $currentSetting -and $currentSetting -ne $ContributionToContentDiscoveryDisabled)
+            if ($null -eq $currentSetting)
             {
-                [PSCustomObject] @{
-                    UserPrincipalName = $userPrincipalName
-                    ContributionToContentDiscoveryDisabled = $currentSetting
-                } | Export-Csv -Path 'DelveUserSettingsReport.csv' -NoTypeInformation -Append
+                $currentSetting = 'Check Account'
             }
+            [PSCustomObject] @{
+                UserPrincipalName = $userPrincipalName
+                ContributionToContentDiscoveryDisabled = $currentSetting
+            } | Export-Csv -Path 'DelveUserSettingsReport.csv' -NoTypeInformation -Append
         }
     }
     else 
