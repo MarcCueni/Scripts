@@ -407,7 +407,6 @@ switch ($PSCmdlet.ParameterSetName)
     'UsersFromGroup' {
         Write-Host 'Fetching Target Users in AAD Group from Microsoft Graph...'
         $targetUsers = Get-AllUsersInGroup -GroupDisplayName $TargetUsersAADGroupName -AccessToken $token.access_token | Select-Object -ExpandProperty userPrincipalName
-        $targetUsers | Out-File "DelveUserSettingsReport_Users_$TargetUsersAADGroupName.txt"
         break
     }
     'UserPrincipalName' {
