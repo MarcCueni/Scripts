@@ -249,7 +249,7 @@ function Get-AllUsersInGroup
                     $users += $groupUsersJson.value
                     $getGroupMembersUpnUri = $groupUsersJson.'@odata.nextLink'
                 }
-                while( $uri )
+                while( $getGroupMembersUpnUri )
             }
 
         # remove users that are guests
